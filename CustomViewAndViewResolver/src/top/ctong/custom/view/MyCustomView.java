@@ -53,7 +53,7 @@ public class MyCustomView implements Serializable, View {
     public String getContentType() {
         String contentType = request.getContentType();
         System.out.println(contentType);
-        return contentType == null ? MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8;" : contentType;
+        return contentType == null ? MediaType.APPLICATION_JSON_VALUE : contentType;
     }
 
     /**
@@ -67,7 +67,6 @@ public class MyCustomView implements Serializable, View {
         this.request = request;
         this.response = response;
         try (PrintWriter writer = this.response.getWriter()) {
-            this.response.setCharacterEncoding("utf-8");
             this.response.setContentType(getContentType());
             writer.println(User.init());
         } catch (IOException e) {
